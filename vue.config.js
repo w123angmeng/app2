@@ -4,6 +4,8 @@ const { name } = require('./package');
 module.exports = {
   transpileDependencies: true,
   devServer: {
+    port: 8082,
+    host: "localhost",
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
