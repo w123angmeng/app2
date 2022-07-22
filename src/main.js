@@ -20,6 +20,10 @@ import routes from './router';
 import store from './store';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import axios from './axios'
+// import VueAxios from 'vue-axios'
+
+Vue.prototype.$axios = axios;
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 console.log("routes:", routes)
@@ -37,7 +41,7 @@ function render(props = {}) {
     router,
     store,
     render: (h) => h(App),
-  }).$mount(container ? container.querySelector('#app') : '#app');
+  }).$mount(container ? container.querySelector('#app2') : '#app2');
 }
 
 // 独立运行时
