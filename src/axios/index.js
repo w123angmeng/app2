@@ -1,20 +1,24 @@
 import axios from 'axios'
 import qs from 'qs';
-import store from '@/store';
+// import store from '@/store';
+import Vue from "vue";
+let vue = new Vue();
 
 var instance = axios.create();
 // 覆写库的超时默认值
 // 现在，在超时前，所有请求都会等待 2.5 秒
-console.log("store", store)
-var tokenStr = store.state.user.token
+// var tokenStr = Vue.$store.state.user.token
+var tokenStr =''
 instance.defaults.timeout = 60000;
 instance.defaults.headers.token = tokenStr;
-instance.defaults.baseURL = window.globalUrl.baseURL;
+// console.log("----axios:", --- window.globalUrl.baseURL, window)
+instance.defaults.baseURL = 'http://192.168.110.73:10060/';
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
-    console.log("===config:", config)
-    config.headers.token = store.state.user.token
+    // console.log("===config:", config, Vue.$store)
+    config.headers.token = vue.$store.state.user.token
+    // config.headers.token = ''
     return config;
   }, function (error) {
     // 对请求错误做些什么

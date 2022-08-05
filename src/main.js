@@ -30,7 +30,9 @@ console.log("routes:", routes)
 let router = null;
 let instance = null;
 function render(props = {}) {
-  const { container } = props;
+//   const { container } = props;
+  const { container, store} = props;
+  Vue.prototype.$store = store;
   router = new VueRouter({
     base: window.__POWERED_BY_QIANKUN__ ? '/app2/' : '/',
     mode: 'history',
@@ -41,7 +43,8 @@ function render(props = {}) {
     router,
     store,
     render: (h) => h(App),
-  }).$mount(container ? container.querySelector('#app2') : '#app2');
+  }).$mount(container ? container.querySelector('#app') : '#app');
+  Vue.observable(store)
 }
 
 // 独立运行时
